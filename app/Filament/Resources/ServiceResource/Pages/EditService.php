@@ -32,6 +32,7 @@ class EditService extends EditRecord
         $data['page_title'] = $service->title;
         $data['meta_title'] = $service->meta_title;
 
+        $data['featured_iamge'] = $service->featured_image;
         $data['meta_description'] = $service->meta_description;
 
         $sections = ServiceSection::query()->whereServiceId($service->id)->get();
