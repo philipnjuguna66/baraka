@@ -32,7 +32,7 @@ class EditService extends EditRecord
         $data['page_title'] = $service->title;
         $data['meta_title'] = $service->meta_title;
 
-        $data['featured_iamge'] = $service->featured_image;
+        $data['featured_image'] = $service->featured_image;
         $data['meta_description'] = $service->meta_description;
 
         $sections = ServiceSection::query()->whereServiceId($service->id)->get();
@@ -78,10 +78,14 @@ class EditService extends EditRecord
 
             ]);
 
+            $page->link()->delete();
+
             $page->link()->create([
                 'slug' => $data['page_slug'],
                 'type' => 'service',
             ]);
+
+            $page->sections()->delete();
 
             foreach ($data['sections'] as $section) {
 
