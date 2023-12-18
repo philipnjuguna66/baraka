@@ -30,6 +30,7 @@ class BookAppointment extends Component implements HasForms, HasActions
     {
         return  Action::make('submit')
             ->button()
+            ->extraAttributes(["class" => 'mt-4 button'])
             ->action(function (){
 
             });
