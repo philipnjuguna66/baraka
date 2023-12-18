@@ -303,9 +303,7 @@ trait HeroImageSectionConcern
             TextInput::make('count')->numeric(),
             Select::make('service_link')
                 ->options(
-                    Permalink::query()->whereType('page')->get()->map(fn(Permalink $permalink) => [
-                        $permalink->slug => $permalink->linkable?->name
-                    ]))
+                    Permalink::query()->whereType('page')->pluck('slug','slug'))
                 ->searchable()
                 ->preload(),
         ]);
