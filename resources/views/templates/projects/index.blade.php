@@ -5,17 +5,17 @@
             <p class="py-3 text-lg leading-8 text-gray-600">{{ str($section->extra['subheading'])->toHtmlString() }}.</p>
 
         </div>
-        <livewire:project.website.list-project :take="$section->extra['count']"/>
+        <livewire:service.all-services :take="$section->extra['count']"/>
 
 
-        @if(isset($section->extra['project_link']) && ! is_null($section->extra['project_link']))
+        @if(isset($section->extra['service_link']) && ! is_null($section->extra['service_link']))
 
             <div class=" ">
                 <div class="px-6 py-2 sm:px-6 sm:py-1 lg:px-8">
                     <div class="md:mx-auto max-w-2xl text-center">
                         <div class="mt-10 flex items-center justify-center gap-x-6">
                             <a
-                                wire:navigate
+
                                 href="{{ route('permalink.show', $section->extra['project_link']) }}"
                                 class="button">
                                 View more Projects <span aria-hidden="true">→</span></a>

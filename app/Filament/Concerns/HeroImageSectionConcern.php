@@ -291,4 +291,30 @@ trait HeroImageSectionConcern
 
         ]);
     }
+    protected function serviceSection(): Block
+    {
+        return Block::make('service_section')->schema([
+            TextInput::make('heading')->required(),
+            TextInput::make('subheading')->required(),
+
+            Checkbox::make('bg_white')->label('White Background')->nullable(),
+            TextInput::make('count')->numeric(),
+            Select::make('service_link')
+                ->options(function (): array {
+
+                    $options = [];
+
+                    foreach (Permalink::query()->whereType('page')->cursor() as $link) {
+
+                        $options[$link->slug] = $link->linkable?->name;
+
+                    }
+
+                    return $options;
+                })
+                ->searchable()
+                ->preload(),
+        ]);
+
+    }
 }

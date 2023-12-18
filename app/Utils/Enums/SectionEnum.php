@@ -8,7 +8,7 @@ enum SectionEnum: string
     case HERO_RIGHT_IMAGE_SECTION = 'hero_right_image_section';
     case CARD_SECTION = 'card_section';
     case STATS_SECTION = 'stats_section';
-    case PROJECT_SECTION = 'project_section';
+    case SERVICE_SECTION = 'service_section';
     case FAQ_SECTION = 'faq_section';
     case PAGE_SECTION = 'posts_section';
     case BLOG_SECTION = 'blog_section';
@@ -38,7 +38,7 @@ enum SectionEnum: string
             static::CARD_SECTION => 'templates.card.index',
             static::STATS_SECTION => 'templates.stats.index',
             static::FAQ_SECTION => 'templates.faqs.faq',
-            static::PROJECT_SECTION => 'templates.projects.index',
+            static::SERVICE_SECTION => 'templates.projects.index',
             static::BLOG_SECTION => 'templates.blog.index',
             static::FULL_IMAGE_WIDTH => 'templates.full_image_width.index',
             static::GALLERY_SECTION => 'templates.gallery.index',
