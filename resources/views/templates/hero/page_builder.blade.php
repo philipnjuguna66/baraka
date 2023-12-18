@@ -1,4 +1,10 @@
-<div class="bg-gray-50 md:py-12  @if($section->extra['bg_white'] )  bg-white @endif">
+<div class="bg-gray-50 md:py-12  @if($section->extra['bg_white'] )  bg-white @endif"
+     @if(isset($section->extra['bg_image']))
+         style=" background-image: url('{{ url(Storage::url($section->extra['bg_image'])) }}');
+     background-position: center center; background-size: cover; background-repeat: no-repeat "
+     @endif
+
+>
     <div class="mx-auto w-4/5 max-w-7xl  lg:px-8">
         <div class="mx-auto max-w-5xl text-center">
             <h3 class="text-2xl font-bold tracking-tight sm:text-6xl">{{ $section->extra['heading'] ?? null }}</h3>

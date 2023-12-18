@@ -97,6 +97,7 @@ trait HeroImageSectionConcern
             ->schema([
                 TextInput::make('columns')->numeric()->default(2)->maxValue(4)->reactive(),
                 Checkbox::make('bg_white'),
+                FileUpload::make('bg_image')->preserveFilenames()->maxSize(1024),
                 TextInput::make('heading')->nullable(),
                 RichEditor::make('sub_heading'),
                 Grid::make(1)->schema(function ($get): array {
