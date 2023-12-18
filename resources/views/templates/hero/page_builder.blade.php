@@ -51,15 +51,18 @@ bg-opacity-90 py-12 bg-gray-950 bg-cover bg-center bg-norepeat text-white
 
             @endforeach
 
-            <div class="mx-auto max-w-5xl">
-                <a
-                    href="{{ $section->extra['url'] }}"
-                    class="button"
-                    wire:navigate
-                >
-                    {{ $section->extra['label'] }}
-                </a>
-            </div>
+            @if( $section->extra['url']  ?? false)
+                    <div class="mx-auto max-w-5xl">
+                        <a
+                            href="{{ $section->extra['url'] }}"
+                            class="button"
+                            wire:navigate
+                        >
+                            {{ $section->extra['label'] }}
+                        </a>
+                    </div>
+            @endif
+
 
         </div>
     </div>
