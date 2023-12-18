@@ -38,7 +38,7 @@
                                     </p>
                                 @endif
 
-                                @if($card['view_more_link_label']?? false)
+                                @if(isset($card['view_more_link_label']) && filled($card['view_more_link_label']))
                                     <div class="mt-4 justify-end  py-4" x-data="{}">
                                         <a
                                             wire:navigate
