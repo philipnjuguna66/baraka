@@ -133,6 +133,7 @@ class CreatePage extends Page
                         $this->cardSection(),
                         $this->testimonialsSection(),
                         $this->sliderSection(),
+                        $this->serviceSection(),
                     ])
                     ->columns(3)
                     ->collapsed()
