@@ -1,6 +1,6 @@
-<div class="md:py-12
+<div class="md:py-12 bg-gray-50
  @if($section->extra['bg_white'] )  bg-white text-gray-500 @endif
- @if(isset($section->extra['bg_image']))
+ @if(isset($section->extra['bg_image']) && filled($section->extra['bg_image']))
 bg-opacity-90 py-12 bg-gray-950 bg-cover bg-center bg-norepeat text-white
 
 @endif  "
