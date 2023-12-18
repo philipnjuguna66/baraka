@@ -102,14 +102,14 @@ trait HeroImageSectionConcern
                 FileUpload::make('bg_image')->preserveFilenames()->maxSize(1024),
                 TextInput::make('heading')->nullable(),
                 Select::make('heading_type')
-                ->options([
-                    "1" => 'h1',
-                    "2" => "h2",
-                    "3" => "h3",
-                    "4" => "h4",
-                    "5" => "h5",
-                    "6" => "h6"
-                ])
+                    ->options([
+                        "1" => 'h1',
+                        "2" => "h2",
+                        "3" => "h3",
+                        "4" => "h4",
+                        "5" => "h5",
+                        "6" => "h6"
+                    ])
                     ->nullable(),
                 RichEditor::make('sub_heading'),
                 Grid::make(1)->schema(function ($get): array {
@@ -197,6 +197,7 @@ trait HeroImageSectionConcern
 
         ]);
     }
+
     protected function buttons(): Block
     {
         return Block::make('buttons')->schema([
@@ -211,34 +212,34 @@ trait HeroImageSectionConcern
     {
         return Block::make('gallery_section')
             ->label(fn(Get $get) => $get("heading"))->schema([
-            TextInput::make('heading'),
-            Select::make('type')
-                ->options([
-                    'slider' => 'Slider',
-                    'grid' => 'Grid',
-                ])
-                ->required()
-                ->reactive()
-                ->searchable()
-                ->preload(),
-            Grid::make(1)
-                ->schema([
+                TextInput::make('heading'),
+                Select::make('type')
+                    ->options([
+                        'slider' => 'Slider',
+                        'grid' => 'Grid',
+                    ])
+                    ->required()
+                    ->reactive()
+                    ->searchable()
+                    ->preload(),
+                Grid::make(1)
+                    ->schema([
 
-                    RichEditor::make('content'),
-                    Grid::make(2)->schema([
-                        TextInput::make('cta_url')->label('cta url'),
-                        TextInput::make('cta_name')->label('cta label'),
-                    ]),
-                ])
-                ->hidden(fn(Get $get): bool => $get('type') == 'grid'),
+                        RichEditor::make('content'),
+                        Grid::make(2)->schema([
+                            TextInput::make('cta_url')->label('cta url'),
+                            TextInput::make('cta_name')->label('cta label'),
+                        ]),
+                    ])
+                    ->hidden(fn(Get $get): bool => $get('type') == 'grid'),
 
-            Repeater::make('images')->schema([
-                FileUpload::make('image')->preserveFilenames()->required(),
-                TextInput::make('image_name')->label('Image Name'),
-                TextInput::make('url'),
-            ]),
+                Repeater::make('images')->schema([
+                    FileUpload::make('image')->preserveFilenames()->required(),
+                    TextInput::make('image_name')->label('Image Name'),
+                    TextInput::make('url'),
+                ]),
 
-        ]);
+            ]);
     }
 
     protected function headerSection(): Block
@@ -291,6 +292,7 @@ trait HeroImageSectionConcern
 
         ]);
     }
+
     protected function serviceSection(): Block
     {
         return Block::make('service_section')->schema([
@@ -300,18 +302,10 @@ trait HeroImageSectionConcern
             Checkbox::make('bg_white')->label('White Background')->nullable(),
             TextInput::make('count')->numeric(),
             Select::make('service_link')
-                ->options(function (): array {
-
-                    $options = [];
-
-                    foreach (Permalink::query()->whereType('page')->cursor() as $link) {
-
-                        $options[$link->slug] = $link->linkable?->name;
-
-                    }
-
-                    return $options;
-                })
+                ->options(
+                    Permalink::query()->whereType('page')->get()->map(fn(Permalink $permalink) => [
+                        $permalink->slug => $permalink->linkable?->name
+                    ]))
                 ->searchable()
                 ->preload(),
         ]);
