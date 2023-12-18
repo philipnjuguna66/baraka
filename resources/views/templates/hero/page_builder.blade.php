@@ -41,6 +41,14 @@ bg-opacity-90 py-12 bg-gray-950 bg-cover bg-center bg-norepeat text-white
                             ?>
                     <div class="mx-auto px-8">
                         {{ str($html)->toHtmlString() }}
+
+                        <a
+                            href="{{ $section->extra['url'] }}"
+                            class="button"
+                            wire:navigate
+                        >
+                            {{ $section->extra['label'] }}
+                        </a>
                     </div>
 
 
