@@ -39,7 +39,7 @@ bg-opacity-90 py-12 bg-gray-950 bg-cover bg-center bg-norepeat text-white
                                 "default" => null,
                             };
                             ?>
-                        <div class="mx-auto px-8">
+                        <div class="mx-auto md:px-8">
                             {{ str($html)->toHtmlString() }}
 
 
