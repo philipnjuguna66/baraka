@@ -35,6 +35,7 @@ bg-opacity-90 py-12 bg-gray-950 bg-cover bg-center bg-norepeat text-white
                                 "masonary_block" => view('templates.hero.masionary', ['masonrySections' => $column['data'], 'page' => $page])->render(),
                                 "header_section" => view("templates.cta.heading", ['section' => $column]),
                                 "buttons" => view("templates.hero._buttons", ['section' => $column['data']]),
+                                "gallery_section" => view("templates.hero.gallery", ['section' => $column['data']]),
                                 "default" => null,
                             };
                             ?>
