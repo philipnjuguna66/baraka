@@ -1,0 +1,246 @@
+<?php
+
+namespace App\Filament\Concerns;
+
+use App\Filament\Resources\Concerns\FullImageWidthFormSectionConcern;
+use App\Models\Permalink;
+use Filament\Forms\Components\Builder\Block;
+use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Builder;
+use Filament\Forms\Components\Toggle;
+use Filament\Forms\Get;
+
+trait HeroImageSectionConcern
+{
+
+    protected function heroLeftImage(): Block
+    {
+        return Block::make('hero_left_image_section')->label('Hero section With Image')->schema([
+
+            TextInput::make('heading')->nullable(),
+            Checkbox::make('margin_top')->label('Add margin Top'),
+            Select::make('align_image')->options([
+                'left' => 'Left',
+                'right' => 'Right',
+            ])
+                ->preload()
+                ->searchable()
+                ->required(),
+            RichEditor::make('description')->required(),
+            FileUpload::make('image')->preserveFilenames()->required(),
+            Checkbox::make('bg_white')->label('White Background')->required(),
+            Grid::make(2)->schema([
+                TextInput::make('cta_url')->label('cta url'),
+                TextInput::make('cta_name')->label('cta label'),
+            ]),
+
+        ]);
+    }
+
+    public function heroWithService(): Block
+    {
+        return Block::make('hero_with_service_section')->reactive()->label(function (Get $get): string {
+            return $get('heading') ?? "Hero with Sections";
+        })
+            ->schema([
+                TextInput::make('heading')->reactive(),
+                Textarea::make('subheading')->reactive(),
+                FileUpload::make('image')->preserveFilenames()->required(),
+                Repeater::make('sections')
+                    ->schema([
+                        RichEditor::make('content')
+                    ]),
+                Checkbox::make('has_contact_form'),
+            ]);
+    }
+
+    public function htmlSection(): Block
+    {
+        return Block::make('html_section')
+            ->schema([
+                Textarea::make('html')
+                    ->helperText('paste html code here, use tailwind css')
+            ]);
+    }
+
+    public function heroPageBuilder(): Block
+    {
+        return Block::make('hero_page_builder_section')
+            ->schema([
+                TextInput::make('columns')->numeric()->default(2)->maxValue(4)->reactive(),
+                Checkbox::make('bg_white'),
+                TextInput::make('heading')->nullable(),
+                RichEditor::make('sub_heading'),
+                Grid::make(1)->schema(function ($get): array {
+
+                    $sections = [];
+
+                    for ($i = 1; $i <= $get('columns'); $i++) {
+                        $sections[] =
+                            Section::make("Column {$i}")
+                                ->description("add details to this section")
+                                ->schema([
+
+                                    Builder::make('columns_sections.' . $i)->label('Page Sections')
+                                        ->collapsible()
+                                        ->blocks([
+                                            $this->headerSection(),
+                                            Block::make('header')
+                                                ->schema([
+                                                    TextInput::make('heading')->label("Heading")->reactive(),
+                                                    TextInput::make('subheading')->label("Sub Heading")->reactive(),
+                                                ])
+                                                ->columns(2),
+                                            Block::make('image')
+                                                ->schema([
+                                                    FileUpload::make('image')->preserveFilenames(),
+                                                    TextInput::make('title')->helperText("image title"),
+                                                ])
+                                            ,
+                                            Block::make('video')
+                                                ->schema([
+                                                    TextInput::make('video_path'),
+                                                    Toggle::make('autoplay'),
+                                                ]),
+                                            Block::make('sliders')
+                                                ->schema([
+                                                    FileUpload::make('image')->preserveFilenames()
+                                                ]),
+                                            Block::make('booking_form')
+                                                ->schema([
+                                                    Checkbox::make('has_contact_form'),
+                                                ]),
+                                            Block::make('text_area')
+                                                ->schema([
+                                                    Checkbox::make('has_border_color'),
+                                                    RichEditor::make('body'),
+                                                ]),
+                                            $this->masonaryBlocks(),
+                                            $this->cardSection(),
+                                        ])
+                                        ->collapsible(),
+                                ]);
+                    }
+
+                    return $sections;
+                })
+
+
+            ]);
+
+    }
+
+
+    private function masonaryBlocks()
+    {
+        return Block::make('masonary_block')
+            ->schema([
+                TextInput::make('heading')->label("Heading")->reactive(),
+                FileUpload::make('image')->preserveFilenames(),
+                TextInput::make('title')->helperText("image title"),
+                Textarea::make('description'),
+            ]);
+    }
+
+    protected function fullImageWidthSection(): Block
+    {
+        return Block::make('full_image_width')->schema([
+
+            FileUpload::make('image')->nullable(),
+            TextInput::make('url'),
+
+        ]);
+    }
+
+    protected function gallerySection(): Block
+    {
+        return Block::make('gallery_section')->schema([
+            TextInput::make('heading'),
+            Select::make('type')
+                ->options([
+                    'slider' => 'Slider',
+                    'grid' => 'Grid',
+                ])
+                ->required()
+                ->reactive()
+                ->searchable()
+                ->preload(),
+            Grid::make(1)
+                ->schema([
+
+                    RichEditor::make('content'),
+                    Grid::make(2)->schema([
+                        TextInput::make('cta_url')->label('cta url'),
+                        TextInput::make('cta_name')->label('cta label'),
+                    ]),
+                ])
+                ->hidden(fn(\Closure $get): bool => $get('type') == 'grid'),
+
+            Repeater::make('images')->schema([
+                FileUpload::make('image')->preserveFilenames()->required(),
+                TextInput::make('image_name')->label('Image Name'),
+                TextInput::make('url'),
+            ]),
+
+        ]);
+    }
+
+    protected function headerSection(): Block
+    {
+        return Block::make('header_section')->schema([
+
+            TextInput::make('heading')->nullable(),
+            Checkbox::make('bg_white')->label('White Background')->nullable(),
+            RichEditor::make('content'),
+        ]);
+    }
+
+    protected function cardSection(): Block
+    {
+        return Block::make('card_section')->schema([
+
+            TextInput::make('heading')->nullable(),
+            TextInput::make('margin_top')->numeric()->nullable(),
+            TextInput::make('columns')->numeric()->default(3),
+            TextInput::make('subheading')->nullable(),
+
+            Checkbox::make('bg_white')->label('White Background')->nullable(),
+            Repeater::make('cards')
+                ->schema([
+                    TextInput::make('title')->nullable(),
+                    TextInput::make('image_name')->nullable(),
+                    FileUpload::make('image')->preserveFilenames()->nullable(),
+                    Textarea::make('description')->nullable(),
+                    TextInput::make('view_more_link_label')->nullable(),
+                    Select::make('view_more_link')
+                        ->options(Permalink::query()->pluck('slug', 'id'))
+                        ->searchable()
+                        ->preload()
+
+                ])
+                ->columns(2)
+                ->collapsible(),
+
+        ]);
+    }
+
+    protected function testimonialsSection(): Block
+    {
+        return Block::make('testimonials_section')->schema([
+            TextInput::make('heading')->required(),
+            TextInput::make('subheading')->nullable(),
+            Checkbox::make('bg_white')->label('White Background')->nullable(),
+            TextInput::make('count')->nullable()->numeric(),
+            TextInput::make('link')->nullable(),
+
+        ]);
+    }
+}
