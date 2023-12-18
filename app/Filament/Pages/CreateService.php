@@ -8,6 +8,7 @@ use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -29,6 +30,7 @@ class CreateService extends Page
     public $page_slug;
 
     public  $is_front_page;
+    public $featured_image;
     public $meta_title;
     public $meta_description;
 
@@ -62,6 +64,7 @@ class CreateService extends Page
                         'meta_title' => $data['meta_title'],
                         'meta_description' => $data['meta_description'],
                         'is_published' => true,
+                        'featured_image' => $data['featured_image'],
 
                     ]);
 
@@ -103,20 +106,19 @@ class CreateService extends Page
     {
         return $form
             ->schema([
-                Grid::make()->schema([
+                Grid::make(3)->schema([
                     TextInput::make('page_title')->reactive()
-                        ->afterStateUpdated(fn (Set $set, $state, $livewire): string => ! $livewire instanceof  EditPage ?? $set('page_slug', str($state)->slug()))
+                        ->afterStateUpdated(fn (Set $set, $state): string =>  $set('page_slug', str($state)->slug()))
                         ->required()->unique(
                             column: 'title',
                             ignoreRecord: true,
                         ),
                     TextInput::make('page_slug')
-                        ->disabled(fn($livewire) => $livewire instanceof EditPage )
+
                         ->required(),
-
-
                     TextInput::make('meta_title')->required()->unique(ignoreRecord: true),
                     TextInput::make('meta_description')->unique(ignoreRecord: true),
+                    FileUpload::make('featured_image')->preserveFilenames()->maxSize('1024'),
 
                 ]),
 
