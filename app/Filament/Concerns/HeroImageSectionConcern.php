@@ -158,6 +158,7 @@ trait HeroImageSectionConcern
                                                 ]),
                                             $this->masonaryBlocks(),
                                             $this->cardSection(),
+                                            $this->buttons(),
                                         ])
                                         ->collapsible(),
                                 ]);
@@ -188,6 +189,15 @@ trait HeroImageSectionConcern
         return Block::make('full_image_width')->schema([
 
             FileUpload::make('image')->nullable(),
+            TextInput::make('url'),
+
+        ]);
+    }
+    protected function buttons(): Block
+    {
+        return Block::make('buttons')->schema([
+
+            TextInput::make('label')->label("Button Label"),
             TextInput::make('url'),
 
         ]);
