@@ -297,7 +297,7 @@ trait HeroImageSectionConcern
     {
         return Block::make('service_section')->schema([
             TextInput::make('heading')->required(),
-            TextInput::make('subheading')->required(),
+            TextInput::make('subheading')->nullable(),
 
             Checkbox::make('bg_white')->label('White Background')->nullable(),
             TextInput::make('count')->numeric(),
