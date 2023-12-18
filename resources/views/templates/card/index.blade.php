@@ -38,17 +38,20 @@
                                     </p>
                                 @endif
 
+                                @if($card['view_more_link_label']?? false)
                                     <div class="mt-4 justify-end  py-4" x-data="{}">
                                         <a
                                             wire:navigate
                                             class="mb-4 button py-1 px-6 rounded-lg shadow-lg text-white absolute bottom-0 mt-4"
                                             href=""
-                                           >
+                                        >
                                             {{ $card['view_more_link_label'] }}
                                         </a>
 
 
                                     </div>
+                                @endif
+
 
                             </div>
                         </div>
