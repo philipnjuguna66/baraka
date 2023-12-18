@@ -11,7 +11,7 @@ bg-opacity-90 py-12 bg-gray-950 bg-cover bg-center bg-norepeat text-white
     @endif
 
 >
-    <div class="mx-auto w-4/5 max-w-7xl px-2  lg:px-8">
+    <div class="md:mx-auto md:w-4/5 max-w-7xl px-2  lg:px-8">
         <div class="mx-auto max-w-5xl text-center">
             <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">{{ $section->extra['heading'] ?? null }}</h1>
             <p class="mt-6 text-lg leading-8 prose">
@@ -19,7 +19,7 @@ bg-opacity-90 py-12 bg-gray-950 bg-cover bg-center bg-norepeat text-white
             </p>
         </div>
 
-        <div class="  grid grid-cols-1 md:grid-cols-{{ $section->extra['columns'] }}  gap-x-1 space-y-4 mt-4 py-4">
+        <div class=" grid grid-cols-1 md:grid-cols-{{ $section->extra['columns'] }}  gap-x-1 space-y-4 mt-4 py-4">
             @foreach($section->extra['columns_sections'] as $index => $columns)
                 <div class="md:text-justify">
                     @foreach($columns as $column)
