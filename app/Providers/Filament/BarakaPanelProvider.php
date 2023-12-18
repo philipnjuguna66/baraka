@@ -49,7 +49,7 @@ class BarakaPanelProvider extends PanelProvider
                 ->itemType('Internal Page',[
                     NavigationSelect::make('url')
                         ->label('URI')
-                        ->options(Permalink::query()->pluck('slug','id'))
+                        //->options(Permalink::query()->pluck('slug','id'))
                     ->preload()
                     ->searchable()
                 ])
