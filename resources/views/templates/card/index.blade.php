@@ -7,7 +7,7 @@
                 <p class="mt-2 text-lg leading-8 text-gray-600">{{ $section->extra['subheading'] }}</p>
             </div>
             <div
-                class="mt-16 grid grid-cols-1 gap-x-8 gap-y-4 lg:gap-y-20  lg:mx-0 lg:max-w-none lg:grid-cols-{{ $section->extra['columns'] }}">
+                class="mt-16 grid grid-cols-1 gap-x-8 gap-y-4 lg:gap-y-20  lg:mx-0 lg:max-w-none md:grid-cols-{{ $section->extra['columns'] }}">
 
 
                 @foreach($section->extra['cards'] as $card)
@@ -31,12 +31,12 @@
 
 
 
-                                @if(isset($card['has_modal']) && ! $card['has_modal'])
+
 
                                     <p class="mt-5 line-clamp-3 leading-6 text-gray-600">
                                         {{ $card['description'] }}
                                     </p>
-                                @endif
+
 
                                 @if(isset($card['view_more_link_label']) && filled($card['view_more_link_label']))
                                     <div class="mt-4 justify-end  py-4" x-data="{}">
