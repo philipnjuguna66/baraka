@@ -84,15 +84,6 @@
                       clip-rule="evenodd"/>
             </svg>
         </a>
-        <a
-            target="_blank"
-           href="tel:@yield('whatsApp',  str($whatsApp)->trim()->toString() )."
-            class="call-button button  bg-red-600 mx-auto max-w-4xl fixed left-[calc(30%)] z-50 hover:bg-red-600 py-2 block md:hidden">
-
-           <span class="font-semibold">
-                Call: @yield('whatsApp',  str($whatsApp)->trim()->toString() )
-           </span>
-        </a>
 
 
     </div>
