@@ -165,7 +165,9 @@ trait HeroImageSectionConcern
                     }
 
                     return $sections;
-                })
+                }),
+                TextInput::make('label')->label("Button Label"),
+                TextInput::make('url'),
 
 
             ]);
