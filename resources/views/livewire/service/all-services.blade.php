@@ -15,7 +15,7 @@
                         <h3  class="mt-1 text-primary-500 text-lg font-bold leading-6">
                             <a href="{{ route('permalink.show', $project->link?->slug) }}">
                                 <span class="absolute inset-0 text-center"></span>
-                                {{ $project->name }}
+                                {{ $project->title }}
                             </a>
                         </h3>
 
