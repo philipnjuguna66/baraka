@@ -12,6 +12,11 @@ class PageController extends Controller
 
         $page = $permalink->linkable;
 
+        if (! filled($page->id))
+        {
+            return  redirect()->route('home.page');
+        }
+
 
         return view($permalink->type->template(), [
             'page' => $page,

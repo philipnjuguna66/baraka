@@ -35,6 +35,7 @@ Route::get('/{permalink:slug}', \App\Http\Controllers\PageController::class)->na
 
 
 Route::fallback(function () {
+
     $page = \App\Models\Page::query()->with('sections', 'link')->where('is_front_page', true)->firstOrFail();
 
     return view('welcome')->with(['page' => $page]);
