@@ -1,4 +1,7 @@
-<div class="bg-gray-50 md:py-12  @if($section->extra['bg_white'] )  bg-white @endif"
+<div class="bg-gray-50 md:py-12  @if(isset($section->extra['bg_image']))
+bg-opacity-90 py-12 bg-gray-950 bg-cover bg-center bg-norepeat
+
+@endif  @if($section->extra['bg_white'] )  bg-white @endif"
      @if(isset($section->extra['bg_image']))
          style=" background-image: url('{{ url(Storage::url($section->extra['bg_image'])) }}');
      background-position: center center; background-size: cover; background-repeat: no-repeat "
