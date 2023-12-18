@@ -75,7 +75,7 @@ class Pages extends Page implements HasTable
 
             ])
             ->bulkActions([
-                DeleteBulkAction::make(),
+              //  DeleteBulkAction::make(),
             ]);
     }
 }
