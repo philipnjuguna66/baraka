@@ -12,6 +12,7 @@ class AllServices extends Component
     use WithPagination;
 
     public int $take = 0;
+    public $grid = 3;
 
     public function render() : View
     {
