@@ -49,25 +49,29 @@ bg-opacity-90 py-12 bg-gray-950 bg-cover bg-center bg-norepeat text-white
 
             @endforeach
 
-            @if( $section->extra['url']  ?? false)
-                <div class=" ">
-                    <div class="px-6 py-2 sm:px-6 sm:py-1 lg:px-8">
-                        <div class="md:mx-auto max-w-2xl text-center">
-                            <div class="mt-10 flex items-center justify-center gap-x-6">
-                                <a
-                                    href="{{ $section->extra['url'] }}"
-                                    class="button"
-                                    wire:navigate
-                                >
-                                    {{ $section->extra['label'] }}
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endif
+
 
 
         </div>
+
+
+
+        @if( $section->extra['url']  ?? false)
+            <div class=" ">
+                <div class="px-6 py-2 sm:px-6 sm:py-1 lg:px-8">
+                    <div class="md:mx-auto max-w-2xl text-center">
+                        <div class="mt-10 flex items-center justify-center gap-x-6">
+                            <a
+                                href="{{ $section->extra['url'] }}"
+                                class="button"
+                                wire:navigate
+                            >
+                                {{ $section->extra['label'] }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
 </div>
