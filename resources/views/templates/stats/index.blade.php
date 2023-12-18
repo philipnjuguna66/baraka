@@ -7,7 +7,8 @@
                 <div class="mx-auto max-w-7xl px-6 lg:px-8">
                     <div  {{ $animationEffect }} class="mx-auto max-w-2xl lg:max-w-none">
                         <div class="text-center">
-                            <h2 class="text-3xl font-bold tracking-tight sm:text-4xl text-white">{{ $section->extra['heading'] }}</h2>
+                            <h{{ $section->extra['heading_type'] ?? "1" }}
+                                class="text-3xl font-bold tracking-tight sm:text-4xl text-white">{{ $section->extra['heading'] }}</h{{ $section->extra['heading_type'] ?? "1" }}>
                             <p class="mt-4 text-lg leading-8  text-gray-50">{{ $section->extra['subheading'] }}</p>
                         </div>
 
