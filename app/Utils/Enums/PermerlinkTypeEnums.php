@@ -6,9 +6,8 @@ enum PermerlinkTypeEnums : string
 {
     case  PAGE = "page";
 
-    case PROJECT= "project";
-
     case POST = "post";
+    case SERVICE = "service";
 
 
     public function template()
@@ -17,7 +16,7 @@ enum PermerlinkTypeEnums : string
             'default' => abort(404),
             static::PAGE => "pages.single",
             static::POST => "pages.post.single",
-            static::PROJECT => "pages.property.single",
+            static::SERVICE => "pages.single",
 
 
         };
