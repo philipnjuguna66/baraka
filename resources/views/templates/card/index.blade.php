@@ -68,7 +68,7 @@
                     <div class="md:mx-auto max-w-2xl text-center">
                         <div class="mt-10 flex items-center justify-center gap-x-6">
 
-                            @if($section->extra['view_more_link'])
+                            @if(isset($section->extra['view_more_link']) && filled($section->extra['view_more_link']))
                                 <a href="{{ $section->extra['view_more_link'] }}"
                                    wire:navigate
                                    class="text-sm font-semibold leading-6 button">{{ $section->extra['view_more_link_label'] }} <span
