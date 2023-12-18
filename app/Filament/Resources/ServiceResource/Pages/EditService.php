@@ -3,7 +3,9 @@
 namespace App\Filament\Resources\ServiceResource\Pages;
 
 use App\Filament\Resources\ServiceResource;
+use App\Models\PageSection;
 use App\Models\Service;
+use App\Models\ServiceSection;
 use Filament\Actions;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
@@ -20,6 +22,39 @@ class EditService extends EditRecord
         return [
             //Actions\DeleteAction::make(),
         ];
+    }
+
+    protected function mutateFormDataBeforeFill(array $data): array
+    {
+        $service =  $this->getRecord();
+
+        $data['page_slug'] = $service->link?->slug;
+        $data['page_title'] = $service->title;
+        $data['meta_title'] = $service->meta_title;
+
+        $data['meta_description'] = $service->meta_description;
+
+        $sections = ServiceSection::query()->whereServiceId($service->id)->get();
+        //$data['sections'] = $sections;
+
+        foreach ($sections as $section) {
+            $extra = [];
+
+            foreach ($section->extra as $key => $extraData) {
+
+                $extra[$key] = $extraData;
+
+            }
+            $data['sections'][] = [
+                'type' => $section->type->value,
+                'data' => $extra,
+            ];
+            // dd($section);
+
+        }
+
+        return  $data;
+
     }
 
     protected function handleRecordUpdate(Model $record, array $data): Model
