@@ -1,3 +1,3 @@
 <div>
-    <livewire:contact.book-site-visit/>
+    <livewire:cta.book-appointment/>
 </div>
