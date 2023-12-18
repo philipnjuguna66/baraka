@@ -52,7 +52,7 @@ class BarakaPanelProvider extends PanelProvider
                         ->options(Permalink::query()->pluck('slug','slug'))
                     ->preload()
                     ->searchable()
-                ])
+                ]),
             ])
             ->maxContentWidth('full')
             ->middleware([
