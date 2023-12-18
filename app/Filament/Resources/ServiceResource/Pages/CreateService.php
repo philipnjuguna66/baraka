@@ -21,19 +21,19 @@ class CreateService extends CreateRecord
             DB::beginTransaction();
 
 
-            /** @var \App\Models\Page $page */
-            $page = \App\Models\Page::create([
+            /** @var \App\Models\Service $page */
+            $page = \App\Models\Service::create([
                 'title' => $data['page_title'],
                 'meta_title' => $data['meta_title'],
                 'meta_description' => $data['meta_description'],
+                'featured_image' => $data['featured_image'],
                 'is_published' => true,
-                'is_front_page' => ($data['is_front_page']) ?? false,
 
             ]);
 
             $page->link()->create([
                 'slug' => $data['page_slug'],
-                'type' => 'page',
+                'type' => 'service',
             ]);
 
             foreach ($data['sections'] as $section) {
