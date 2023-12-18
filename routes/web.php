@@ -30,6 +30,9 @@ Route::get('/', function () {
 })->name('home.page');
 
 
+Route::get('/{permalink:slug}', \App\Http\Controllers\PageController::class)->name('permalink.show');
+
+
 
 Route::fallback(function () {
     $page = \App\Models\Page::query()->with('sections', 'link')->where('is_front_page', true)->firstOrFail();
