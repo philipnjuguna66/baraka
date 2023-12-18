@@ -91,8 +91,10 @@ trait HeroImageSectionConcern
 
         ]);
     }
+
     public function heroPageBuilder(): Block
     {
+
         return Block::make('hero_page_builder_section')
             ->schema([
                 TextInput::make('columns')->numeric()->default(2)->maxValue(4)->reactive(),
@@ -100,12 +102,12 @@ trait HeroImageSectionConcern
                 FileUpload::make('bg_image')->preserveFilenames()->maxSize(1024),
                 TextInput::make('heading')->nullable(),
                 Select::make('heading_type')
-                    >optional([
-                        "1" => 'h1',
-                    "2"=>"h2",
-                    "3"=>"h3",
+                ->options([
+                    "1" => 'h1',
+                    "2" => "h2",
+                    "3" => "h3",
                     "4" => "h4",
-                    "5" =>"h5",
+                    "5" => "h5",
                     "6" => "h6"
                 ])
                     ->nullable(),
