@@ -106,13 +106,13 @@ class CreatePage extends Page
             ->schema([
                 Grid::make()->schema([
                     TextInput::make('page_title')->reactive()
-                        ->afterStateUpdated(fn (Set $set, $state, $livewire): string => ! $livewire instanceof  EditPage ?? $set('page_slug', str($state)->slug()))
+                        ->afterStateUpdated(fn (Set $set, $state): string =>  $set('page_slug', str($state)->slug()))
                         ->required()->unique(
                             column: 'title',
                             ignoreRecord: true,
                         ),
                     TextInput::make('page_slug')
-                        ->disabled(fn($livewire) => $livewire instanceof EditPage )
+
                         ->required(),
 
                     Checkbox::make('is_front_page')
