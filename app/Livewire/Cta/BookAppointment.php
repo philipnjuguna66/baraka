@@ -4,6 +4,7 @@ namespace App\Livewire\Cta;
 
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
@@ -13,7 +14,7 @@ use Filament\Forms\Form;
 use Livewire\Component;
 use Ysfkaya\FilamentPhoneInput\Forms\PhoneInput;
 
-class BookAppointment extends Component implements HasForms
+class BookAppointment extends Component implements HasForms, HasActions
 {
     use InteractsWithForms;
 
@@ -28,6 +29,7 @@ class BookAppointment extends Component implements HasForms
     public function submitAction() : Action
     {
         return  Action::make('submit')
+            ->button()
             ->action(function (){
 
             });
