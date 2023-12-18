@@ -18,6 +18,7 @@ bg-opacity-90 py-12 bg-gray-950 bg-cover bg-center bg-norepeat text-white
                 {!!  $section->extra['sub_heading'] ?? null!!}
             </p>
         </div>
+
         <div class=" grid grid-cols-1 md:grid-cols-{{ $section->extra['columns'] }}  gap-x-1 space-y-4 mt-4 py-4">
             @foreach($section->extra['columns_sections'] as $index => $columns)
                 <div class="md:text-justify">

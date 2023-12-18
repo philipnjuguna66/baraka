@@ -17,10 +17,12 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,200&display=swap" rel="stylesheet">
 
+        @filamentStyles
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @livewireStyles
+
        {{-- {!! app(\App\Settings\ScriptSettings::class)?->header !!}--}}
     </head>
     <body class="h-full bg-gray-100 text-gray-900 ">
@@ -36,8 +38,10 @@
 
     @include('layouts.partials.slider_over')
     @livewireScripts
+   @filamentScripts
 
-    @include('layouts.partials.footer')
+
+   @include('layouts.partials.footer')
     @stack('scripts')
     {{--{!! app(\App\Settings\ScriptSettings::class)?->footer !!}--}}
     </body>
