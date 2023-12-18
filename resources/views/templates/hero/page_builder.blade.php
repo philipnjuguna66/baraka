@@ -13,9 +13,8 @@ bg-opacity-90 py-12 bg-gray-950 bg-cover bg-center bg-norepeat text-white
 >
     <div class="mx-auto w-4/5 max-w-7xl  lg:px-8">
         <div class="mx-auto max-w-5xl text-center">
-            <h{{ $section->extra['heading_type'] ?? "1" }}
-                class="text-3xl font-bold tracking-tight sm:text-4xl text-white">{{ $section->extra['heading'] ?? null }}</h{{ $section->extra['heading_type'] ?? "1" }}>
-            <p class="mt-6 text-lg leading-8 text-gray-600 prose">
+            <h1 class="text-3xl font-bold tracking-tight sm:text-4xl text-white">{{ $section->extra['heading'] ?? null }}</h1>
+            <p class="mt-6 text-lg leading-8 prose">
                 {!!  $section->extra['sub_heading'] ?? null!!}
             </p>
         </div>
