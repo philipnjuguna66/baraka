@@ -159,6 +159,7 @@ trait HeroImageSectionConcern
                                             $this->masonaryBlocks(),
                                             $this->cardSection(),
                                             $this->buttons(),
+                                            $this->gallerySection(),
                                         ])
                                         ->collapsible(),
                                 ]);
@@ -208,7 +209,8 @@ trait HeroImageSectionConcern
 
     protected function gallerySection(): Block
     {
-        return Block::make('gallery_section')->schema([
+        return Block::make('gallery_section')
+            ->label(fn(Get $get) => $get("heading"))->schema([
             TextInput::make('heading'),
             Select::make('type')
                 ->options([
@@ -228,7 +230,7 @@ trait HeroImageSectionConcern
                         TextInput::make('cta_name')->label('cta label'),
                     ]),
                 ])
-                ->hidden(fn(\Closure $get): bool => $get('type') == 'grid'),
+                ->hidden(fn(Get $get): bool => $get('type') == 'grid'),
 
             Repeater::make('images')->schema([
                 FileUpload::make('image')->preserveFilenames()->required(),
