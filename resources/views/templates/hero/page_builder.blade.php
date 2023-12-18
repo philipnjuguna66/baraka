@@ -52,7 +52,7 @@ bg-opacity-90 py-12 bg-gray-950 bg-cover bg-center bg-norepeat text-white
             @endforeach
 
             @if( $section->extra['url']  ?? false)
-                    <div class="mx-auto max-w-5xl">
+                    <div class="mx-auto max-w-5xl w-4/5">
                         <a
                             href="{{ $section->extra['url'] }}"
                             class="button"
