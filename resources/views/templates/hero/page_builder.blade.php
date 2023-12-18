@@ -63,7 +63,7 @@ bg-opacity-90 py-12 bg-gray-950 bg-cover bg-center bg-norepeat text-white
                         <div class="mt-10 flex items-center justify-center gap-x-6">
                             <a
                                 href="{{ $section->extra['url'] }}"
-                                class="button"
+                                class="button {{ $section->extra['color'] ?? null }}"
                                 wire:navigate
                             >
                                 {{ $section->extra['label'] }}

@@ -167,7 +167,8 @@ trait HeroImageSectionConcern
                     return $sections;
                 }),
                 TextInput::make('label')->label("Button Label"),
-                TextInput::make('url'),
+                TextInput::make('url')->label('Button Url'),
+                TextInput::make('color')->type('color')->label("Button Background Color"),
 
 
             ]);
