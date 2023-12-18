@@ -26,7 +26,7 @@ $menu = Navigation::fromHandle('header');
                                 }
                             @endphp
                 <li class="py-2 border-b-1 border-primary-300/50 md:border-b-0">
-                    <a href="{{ $url }}" class="block py-1 text-center {{ activeLink($item['data']['url'])  ? "border-b-2 border-primary-900 text-secondary-600 font-bold  " : "    text-gray-800  " }} rounded md:bg-transparent dark:bg-blue-600 md:dark:bg-transparent"  @if(activeLink($item['data']['url']) ) aria-current="page" @endif>{{ str($item['label'])->toString() }}</a>
+                    <a wire:navigate href="{{ $url }}" class="block py-1 text-center {{ activeLink($item['data']['url'])  ? "border-b-2 border-primary-900 text-secondary-600 font-bold  " : "    text-gray-800  " }} rounded md:bg-transparent dark:bg-blue-600 md:dark:bg-transparent"  @if(activeLink($item['data']['url']) ) aria-current="page" @endif>{{ str($item['label'])->toString() }}</a>
                 </li>
 
                         @else
@@ -59,7 +59,9 @@ $menu = Navigation::fromHandle('header');
 
                                 @endphp
                                 <li>
-                                <a href="{{ $url }}" class="block px-4 py-2  {{ activeLink($child['data']['url'])  ? "border-b-2 border-primary-900 text-gray-950/80 " : "    text-gray-800  " }} hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"  @if(activeLink($child['data']['url']) ) aria-current="page" @endif>{{ str($child['label'])->toString()  }}</a>
+                                <a
+                                    wire:navigate
+                                    href="{{ $url }}" class="block px-4 py-2  {{ activeLink($child['data']['url'])  ? "border-b-2 border-primary-900 text-gray-950/80 " : "    text-gray-800  " }} hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"  @if(activeLink($child['data']['url']) ) aria-current="page" @endif>{{ str($child['label'])->toString()  }}</a>
                             </li>
                             @endforeach
 
