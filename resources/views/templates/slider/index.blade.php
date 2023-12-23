@@ -1,11 +1,11 @@
 <div class="bg-white relative" id="">
     <div class="w-full -mb-[4rem] md:-mb-[6rem]"  data-carousel="slide"  id="controls-carousel">
 
-        <div class="relative h-56 overflow-hidden lg:h-[500px]">
+        <div class="relative h-36 overflow-hidden lg:h-[500px]">
             @foreach($section->extra['sliders'] as $slider)
                 <a href="{{ url($slider['url'] ?? "#") }}">
 
-                    <div class="hidden duration-700  ease-in-out" data-carousel-item>
+                    <div class=" duration-700  ease-in-out" data-carousel-item>
                         <img  src="{{ \Illuminate\Support\Facades\Storage::url($slider['image']) }}"
                               class="absolute block object-cover bg-center bg-contain bg-no-repeat  w-full object-center -translate-x-1/2 -translate-y-1/2  top-1/2 left-1/2"
                               alt="{{ $page->meta_title }}">
